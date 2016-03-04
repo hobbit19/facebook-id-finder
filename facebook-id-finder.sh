@@ -9,7 +9,7 @@ echo "Step1: Parse the name..."
 username=`echo $1 | cut -d '/' -f 4`
 echo "===> "$username
 echo "Step2: Find the id..."
-raw=`curl $url'/'$username 2>/dev/null | sed -e 's/}/\n/g; s/\"//g' | grep 'entity_id:[0-9]*' | cut -d ':' -f 3`
+raw=`curl $url'/'$username 2>/dev/null | sed -e 's/}/\'$'\n/g; s/\"//g' | grep 'entity_id:[0-9]*' | cut -d ':' -f 3`
 if [ -z "$raw" ]; then
     echo "Wrong input name! Please re-try!"
 else
